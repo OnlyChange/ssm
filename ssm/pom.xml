@@ -1,0 +1,192 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.lmn</groupId>
+	<artifactId>ssm</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>ssm Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<spring.version>4.3.4.RELEASE</spring.version>
+		<jetty.version>8.1.15.v20140411</jetty.version>
+		<commons-dbcp.version>1.4</commons-dbcp.version>
+		<mybatis.version>3.4.0</mybatis.version>
+		<mybatis-spring.version>1.3.0</mybatis-spring.version>
+		<commons-fileupload.version>1.3.1</commons-fileupload.version>
+		<commons-logging.version>1.2</commons-logging.version>
+		<mysql.version>5.1.38</mysql.version>
+		<servlet.version>3.1.0</servlet.version>
+		<junit.version>3.8.1</junit.version>
+		<log4j-api.version>2.7</log4j-api.version>
+		<log4j-core.version>2.7</log4j-core.version>
+		<log4j.version>1.2.14</log4j.version>
+	</properties>
+	<dependencies>
+		<!-- spring start -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<!-- spring end -->
+		<!-- commons start -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>${commons-fileupload.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>${commons-logging.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>${commons-dbcp.version}</version>
+		</dependency>
+		<!-- commons end -->
+		<!-- mybatis start -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>${mybatis.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>${mybatis-spring.version}</version>
+		</dependency>
+		<!-- mybatis end -->
+		<!-- mysql start -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.version}</version>
+		</dependency>
+		<!-- mysql end -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${servlet.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- log4j start -->
+		<!-- <dependency> <groupId>org.apache.logging.log4j</groupId> <artifactId>log4j-api</artifactId> 
+			<version>${log4j-api.version}</version> </dependency> <dependency> <groupId>org.apache.logging.log4j</groupId> 
+			<artifactId>log4j-core</artifactId> <version>${log4j-core.version}</version> 
+			</dependency> -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<!-- log4j end -->
+	</dependencies>
+	<build>
+		<finalName>ssm</finalName>
+		<plugins>
+			<!-- jetty插件, 设定context path与spring profile -->
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>${jetty.version}</version>
+				<configuration>
+					<webApp>
+						<contextPath>/${project.artifactId}</contextPath>
+					</webApp>
+					<stopKey>kad</stopKey>
+					<stopPort>9999</stopPort>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId> <!-- 官网给出的配置，没有配置 groupId，这里也不配置 -->
+				<version>2.4</version>
+				<executions>
+					<execution>
+						<id>make-assembly</id> <!-- ID 标识，命名随意 -->
+						<phase>package</phase> <!-- 绑定到 PACKAGE 生命周期阶段 -->
+						<goals>
+							<goal>single</goal>  <!-- 在 PACKAGE 生命周期阶段仅执行一次 -->
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<descriptors>
+						<descriptor>assembly.xml</descriptor> <!-- 自定义打包的配置文件 -->
+					</descriptors>
+					<appendAssemblyId>false</appendAssemblyId> <!-- 设为 FALSE, 防止 WAR 包名加入 assembly.xml 中的 ID -->
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<profiles>
+		<profile> <!-- 可以通过 -P ID 来激活 -->
+			<id>PROD</id> <!-- ID 标识符 -->
+			<properties>
+				<env>PROD</env> <!-- properties 定义 key-value, 这里 key 是 env, value 是 PROD -->
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault> <!-- 默认激活 -->
+			</activation>
+		</profile>
+		<profile> <!-- 可以通过 -P ID 来激活 -->
+			<id>TEST</id> <!-- ID 标识符 -->
+			<properties>
+				<env>TEST</env> <!-- properties 定义 key-value, 这里 key 是 env, value 是 TEST -->
+			</properties>
+		</profile>
+	</profiles>
+</project>
