@@ -19,8 +19,6 @@ public class Task extends RecursiveAction {
 		this.increment = increment;
 	}
 
-	@Override
-
 	protected void compute() {
 		if (last - first < 10) {
 			updatePrices();

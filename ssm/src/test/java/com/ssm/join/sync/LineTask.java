@@ -1,4 +1,4 @@
-package com.ssm.join;
+package com.ssm.join.sync;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.RecursiveTask;
@@ -25,8 +25,6 @@ public class LineTask extends RecursiveTask<Integer> {
 		this.word = word;
 	}
 
-	@Override
-
 	protected Integer compute() {
 		Integer result = null;
 		if (end - start < 100) {
@@ -46,8 +44,7 @@ public class LineTask extends RecursiveTask<Integer> {
 	}
 
 	private Integer count(String[] line, int start, int end, String word) {
-		int counter;
-		counter = 0;
+		int counter = 0;
 		for (int i = start; i < end; i++) {
 			if (line[i].equals(word)) {
 				counter++;
@@ -62,13 +59,7 @@ public class LineTask extends RecursiveTask<Integer> {
 	}
 
 	private Integer groupResults(Integer number1, Integer number2) {
-
-		Integer result;
-
-		result = number1 + number2;
-
-		return result;
-
+		return number1 + number2;
 	}
 
 }

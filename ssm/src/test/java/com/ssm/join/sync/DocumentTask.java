@@ -1,4 +1,4 @@
-package com.ssm.join;
+package com.ssm.join.sync;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +26,6 @@ public class DocumentTask extends RecursiveTask<Integer> {
 		this.word = word;
 	}
 
-	@Override
-
 	protected Integer compute() {
 		int result = 0;
 		if (end - start < 10) {
@@ -45,7 +43,6 @@ public class DocumentTask extends RecursiveTask<Integer> {
 		}
 		return result;
 	}
-
 	private Integer processLines(String[][] document, int start, int end, String word) {
 		List<LineTask> tasks = new ArrayList<LineTask>();
 		for (int i = start; i < end; i++) {
@@ -64,10 +61,7 @@ public class DocumentTask extends RecursiveTask<Integer> {
 		}
 		return new Integer(result);
 	}
-
 	private Integer groupResults(Integer number1, Integer number2) {
-		Integer result;
-		result = number1 + number2;
-		return result;
+		return number1 + number2;
 	}
 }

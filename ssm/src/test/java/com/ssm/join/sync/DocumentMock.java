@@ -1,4 +1,4 @@
-package com.ssm.join;
+package com.ssm.join.sync;
 
 import java.util.Random;
 
