@@ -14,7 +14,7 @@ import java.util.concurrent.RecursiveTask;
 public class DocumentTask extends RecursiveTask<Integer> {
 
 	private static final long serialVersionUID = 9031496444682869577L;
-	
+
 	private String document[][];
 	private int start, end;
 	private String word;
@@ -46,28 +46,28 @@ public class DocumentTask extends RecursiveTask<Integer> {
 		return result;
 	}
 
-	private Integer processLines(String[][] document, int start, int end,String word) {
-	    List<LineTask> tasks=new ArrayList<LineTask>();
-	    for (int i=start; i<end; i++){
-		    LineTask task=new LineTask(document[i], 0, document[i].length, word);
-		    tasks.add(task);
-	    }
-	    invokeAll(tasks);
-	    int result=0;
-	    for (int i=0; i<tasks.size(); i++) {
-	        LineTask task=tasks.get(i);
-	        try {
-	            result=result+task.get();
-	        } catch (InterruptedException | ExecutionException e) {
-	            e.printStackTrace();
-	        }
-	    }
-	    return new Integer(result);
+	private Integer processLines(String[][] document, int start, int end, String word) {
+		List<LineTask> tasks = new ArrayList<LineTask>();
+		for (int i = start; i < end; i++) {
+			LineTask task = new LineTask(document[i], 0, document[i].length, word);
+			tasks.add(task);
+		}
+		invokeAll(tasks);
+		int result = 0;
+		for (int i = 0; i < tasks.size(); i++) {
+			LineTask task = tasks.get(i);
+			try {
+				result = result + task.get();
+			} catch (InterruptedException | ExecutionException e) {
+				e.printStackTrace();
+			}
+		}
+		return new Integer(result);
 	}
-	
+
 	private Integer groupResults(Integer number1, Integer number2) {
-	    Integer result;
-	    result=number1+number2;
-	    return result;
+		Integer result;
+		result = number1 + number2;
+		return result;
 	}
 }

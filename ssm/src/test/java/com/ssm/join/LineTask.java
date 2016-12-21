@@ -18,8 +18,7 @@ public class LineTask extends RecursiveTask<Integer> {
 
 	private String word;
 
-	public LineTask(String line[], int start, int end, String word)
-	{
+	public LineTask(String line[], int start, int end, String word) {
 		this.line = line;
 		this.start = start;
 		this.end = end;
@@ -47,19 +46,19 @@ public class LineTask extends RecursiveTask<Integer> {
 	}
 
 	private Integer count(String[] line, int start, int end, String word) {
-	    int counter;
-	    counter=0;
-	    for (int i=start; i<end; i++){
-	        if (line[i].equals(word)){
-	        	counter++;
-	        }
-	    }
-	    try {
-	        Thread.sleep(10);
-	    } catch (InterruptedException e) {
-	        e.printStackTrace();
-	    }
-	    return counter;
+		int counter;
+		counter = 0;
+		for (int i = start; i < end; i++) {
+			if (line[i].equals(word)) {
+				counter++;
+			}
+		}
+		try {
+			Thread.sleep(10);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		return counter;
 	}
 
 	private Integer groupResults(Integer number1, Integer number2) {
