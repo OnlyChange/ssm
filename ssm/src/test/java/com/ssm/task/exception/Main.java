@@ -1,4 +1,4 @@
-package com.ssm.exception;
+package com.ssm.task.exception;
 
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.TimeUnit;

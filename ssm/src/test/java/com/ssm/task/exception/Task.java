@@ -1,4 +1,4 @@
-package com.ssm.exception;
+package com.ssm.task.exception;
 
 import java.util.concurrent.RecursiveTask;
 import java.util.concurrent.TimeUnit;
