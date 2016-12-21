@@ -9,5 +9,6 @@ public class TestTemp {
 	public static void main(String[] args) {
 		System.out.println(Runtime.getRuntime().availableProcessors());
 		System.out.println(0x7fff);
+		
 	}
 }
